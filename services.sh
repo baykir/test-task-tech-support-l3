@@ -53,3 +53,9 @@ if [ "$FOUND_REPORTS" -lt 1 ]; then
     tar --create --file "$SERVER"_"$DATE".tar DEFAULT*
     mv "$SERVER"_"$DATE".tar archives
 fi
+
+# Удаление временных файлов
+rm data DEFAULT*
+
+# # Создание архива с отчётами
+# tar --create --file archive.tar DEFAULT*
