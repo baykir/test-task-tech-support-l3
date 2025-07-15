@@ -9,8 +9,8 @@ SERVER=${1:-"DEFAULT"}
 # Определение времени
 DATE=$(date "+%d_%m_%Y")
 
-echo "$SERVER"
-echo "$DATE"
+# echo "$SERVER"
+# echo "$DATE"
 
 # Создание файла с нерабочими подами
 FAILED_PODS_FILE="$SERVER"_"$DATE"_failed.out
