@@ -47,3 +47,9 @@ echo "Количество сервисов с ошибками: $FAILED_SERVICE
 echo "Имя системного пользователя: $USER" >> "$SERVER"_"$DATE"_report.out
 echo "Дата: $REPORT_DATE" >> "$SERVER"_"$DATE"_report.out
 
+# Поиск ранее сформированного отчета
+FOUND_REPORTS=$(find archives -name "$SERVER"_"$DATE".tar | wc -l)
+if [ "$FOUND_REPORTS" -lt 1 ]; then
+    tar --create --file "$SERVER"_"$DATE".tar DEFAULT*
+    mv "$SERVER"_"$DATE".tar archives
+fi
