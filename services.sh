@@ -32,3 +32,18 @@ awk '/Running/ { print $1 }' data > "$RUNNING_PODS_FILE"
 # done < "$FAILED_PODS_FILE"
 sed -i -E 's/-[a-z0-9]{10,}-[a-z0-9]{5,}$//' "$FAILED_PODS_FILE"
 sed -i -E 's/-[a-z0-9]{10,}-[a-z0-9]{5,}$//' "$RUNNING_PODS_FILE"
+
+# Создание отчёта
+touch "$SERVER"_"$DATE"_report.out
+chmod 644 "$SERVER"_"$DATE"_report.out
+
+# Подсчёт работающих сервисов
+RUNNING_SERVICES=$(wc -l "$RUNNING_PODS_FILE" | cut -d " " -f 1)
+FAILED_SERVICES=$(wc -l "$FAILED_PODS_FILE" | cut -d " " -f 1)
+USER=$(whoami)
+REPORT_DATE=$(date "+%d/%m/%y")
+echo "Количество работающих сервисов: $RUNNING_SERVICES" > "$SERVER"_"$DATE"_report.out
+echo "Количество сервисов с ошибками: $FAILED_SERVICES" >> "$SERVER"_"$DATE"_report.out
+echo "Имя системного пользователя: $USER" >> "$SERVER"_"$DATE"_report.out
+echo "Дата: $REPORT_DATE" >> "$SERVER"_"$DATE"_report.out
+
