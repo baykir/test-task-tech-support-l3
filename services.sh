@@ -47,9 +47,16 @@ echo "Количество сервисов с ошибками: $FAILED_SERVICE
 echo "Имя системного пользователя: $USER" >> "$SERVER"_"$DATE"_report.out
 echo "Дата: $REPORT_DATE" >> "$SERVER"_"$DATE"_report.out
 
+# Проверка наличия директории archives
+ARCHIVE_DIR=$(find archives -maxdepth 0 -type d  2> /dev/null| wc -l)
+
+if [ "$ARCHIVE_DIR" -eq 0 ]; then
+    mkdir archives
+fi
+
 # Поиск ранее сформированного отчета
 FOUND_REPORTS=$(find archives -name "$SERVER"_"$DATE".tar | wc -l)
-if [ "$FOUND_REPORTS" -lt 1 ]; then
+if [ "$FOUND_REPORTS" -eq 0 ]; then
     tar --create --file "$SERVER"_"$DATE".tar DEFAULT*
     mv "$SERVER"_"$DATE".tar archives
 fi
