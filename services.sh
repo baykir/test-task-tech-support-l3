@@ -26,7 +26,9 @@ RUNNING_PODS_FILE="$SERVER"_"$DATE"_running.out
 awk '/Running/ { print $1 }' data > "$RUNNING_PODS_FILE"
 
 # Нормализация данных
-while read -r line; do
-    echo "$line" | awk -F"-" '{ print $NF }' #вывод последнего столбца строки
-    echo "$line" | awk -F"-" '{ print $(NF-1)}' #вывод предпоследнего столбца строки
-done < "$FAILED_PODS_FILE"
+# while read -r line; do
+#     echo "$line" | awk -F"-" '{ print $NF }' #вывод последнего столбца строки
+#     echo "$line" | awk -F"-" '{ print $(NF-1)}' #вывод предпоследнего столбца строки
+# done < "$FAILED_PODS_FILE"
+sed -i -E 's/-[a-z0-9]{10,}-[a-z0-9]{5,}$//' "$FAILED_PODS_FILE"
+sed -i -E 's/-[a-z0-9]{10,}-[a-z0-9]{5,}$//' "$RUNNING_PODS_FILE"
