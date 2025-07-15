@@ -57,12 +57,12 @@ fi
 # Поиск ранее сформированного отчета
 FOUND_REPORTS=$(find archives -name "$SERVER"_"$DATE".tar | wc -l)
 if [ "$FOUND_REPORTS" -eq 0 ]; then
-    tar --create --file "$SERVER"_"$DATE".tar DEFAULT*
+    tar --create --file "$SERVER"_"$DATE".tar "$SERVER"*
     mv "$SERVER"_"$DATE".tar archives
 fi
 
 # Удаление временных файлов
-rm data DEFAULT*
+rm data "$SERVER"*
 
 # # Создание архива с отчётами
 # tar --create --file archive.tar DEFAULT*
