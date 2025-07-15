@@ -59,3 +59,12 @@ rm data DEFAULT*
 
 # # Создание архива с отчётами
 # tar --create --file archive.tar DEFAULT*
+
+# Проверка архива на целостность
+tar -xf archives/$SERVER"_"$DATE.tar -O > /dev/null 2>&1
+# CHECK_ARCHIVE="$?"
+if [ "$?" -ne 0 ]; then
+    echo "Archive is corrupted"
+else
+    echo "Archive is OK"
+fi
