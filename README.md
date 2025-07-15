@@ -1,5 +1,5 @@
 # test-task-tech-support-l3
-Репозиторий выполнения тестового задания "Test task TechSup L3"
+Репозиторий выполнения тестового задания [Test task TechSup L3](https://medods.notion.site/Test-task-TechSup-L3-22ea65940bd44eb285627e8bd814d8ff)
 
 ## Запуск скрипта
 Перед выполнением скрипта рекомендуется проверить признак выполняемости с помощь команды:
